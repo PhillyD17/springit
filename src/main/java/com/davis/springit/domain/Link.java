@@ -1,4 +1,4 @@
-package com.davis.springit.rename;
+package com.davis.springit.domain;
 
 
 import lombok.Data;
@@ -8,11 +8,14 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Link {
+public class Link extends Auditable {
 
 
     @Id
@@ -22,4 +25,8 @@ public class Link {
     private String title;
     @NonNull
     private String url;
+
+    //comment
+    @OneToMany(mappedBy = "link")
+    private List<Comment> comments = new ArrayList<>();
 }
